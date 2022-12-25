@@ -1,0 +1,19 @@
+{
+  "name": "buyers-edge",
+  "version": "1.0.0",
+  "description": "Complete MERN Project",
+  "main": "backend/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/surjesh-yadav/Buyer-s-Edge.git"
+  },
+  "author": "Surjesh Yadav",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/surjesh-yadav/Buyer-s-Edge/issues"
+  },
+  "homepage": "https://github.com/surjesh-yadav/Buyer-s-Edge#readme"
+}
