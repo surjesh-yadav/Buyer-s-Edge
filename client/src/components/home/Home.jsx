@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import React from "react";
 import Banner from "./Banner";
 import { Box } from "@mui/material";
-import getAllProducts from "../../redux/actions/productAction";
+import {getAllProducts} from '../../redux/actions/productAction'
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProductComponent from "./ProductComponent";
