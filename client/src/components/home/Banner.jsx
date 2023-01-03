@@ -4,10 +4,14 @@ import "react-multi-carousel/lib/styles.css";
 import { bannerData } from "../../constants/data";
 import { styled } from "@mui/material";
 
-const Images = styled("img")`
-  width: 100%;
-  height: 280px;
-`;
+const Images = styled("img")(({ theme }) => ({
+  width: "100%",
+  height: 280,
+  [theme.breakpoints.down("sm")]: {
+    objectFit: "cover",
+    height: 180,
+  },
+}));
 
 const responsive = {
   desktop: {
@@ -36,6 +40,7 @@ const Banner = () => {
       containerClass="carousel-container"
       autoPlay={true}
       autoPlaySpeed={2000}
+      keyBoardControl={true}
     >
       {bannerData.map((data) => (
         <Images key={data.id} src={data.url} alt="" />
