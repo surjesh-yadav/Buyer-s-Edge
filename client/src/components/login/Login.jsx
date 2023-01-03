@@ -7,8 +7,10 @@ import {
   Button,
   styled,
 } from "@mui/material";
-import { useState } from "react";
-import { authenticateSignUp } from "../../service/Api";
+import { useState, useContext } from "react";
+import { authenticateLogin, authenticateSignUp } from "../../service/Api";
+import { DataContext } from "../../context/DataProvider";
+
 const Component = styled(Box)`
   height: 99vh;
   width: 90vh;
@@ -72,6 +74,14 @@ const CreateAccount = styled(Typography)`
   color: blue;
 `;
 
+const Error = styled(Typography)`
+  color: red;
+  font-size: 12px;
+  line-height: 0;
+  margin-top: 10px;
+  font-weight: 600;
+`;
+
 const initialValue = {
   login: {
     view: "login",
@@ -87,12 +97,19 @@ const initialObject = {
   userName: "",
   email: "",
   phone: "",
-  passsword: "",
+  password: "",
 };
 
+const initialObjectLogin = {
+  email: "",
+  password: "",
+};
 const LoginDialog = ({ open, setOpen }) => {
   const [account, ToggleAccount] = useState(initialValue.login);
   const [signup, setSignup] = useState(initialObject);
+  const [login, setlogin] = useState(initialObjectLogin);
+  const { setAccountName } = useContext(DataContext);
+  const [error, setError] = useState(false);
   const handleClose = () => {
     setOpen(false);
   };
@@ -105,11 +122,32 @@ const LoginDialog = ({ open, setOpen }) => {
 
   const onInputChange = (e) => {
     setSignup({ ...signup, [e.target.name]: e.target.value });
-    console.log(signup);
+    // console.log(signup);
   };
 
   const signupUser = async () => {
-    await authenticateSignUp(signup);
+    let response = await authenticateSignUp(signup);
+
+    /*console.log(response)*/ if (!response) return;
+    handleClose();
+    setError(false);
+    setAccountName(signup.firstName);
+  };
+
+  const onValueChange = (e) => {
+    setlogin({ ...login, [e.target.name]: e.target.value });
+  };
+
+  const LoginHandle = async () => {
+    let response = await authenticateLogin(login);
+    console.log(response);
+    if (response.status === 200) {
+      handleClose();
+      setError(false);
+      setAccountName(response.data.data.firstName);
+    } else {
+      setError(true);
+    }
   };
 
   return (
@@ -120,18 +158,21 @@ const LoginDialog = ({ open, setOpen }) => {
             <WraperLogin>
               <TextField
                 variant="standard"
-                onChange={(e) => onInputChange(e)}
+                onChange={(e) => onValueChange(e)}
                 label="Enter Your Email"
-                // name="email"
+                name="email"
               />
+
+              {error && <Error>Please enter valid email or Password</Error>}
+
               <TextField
                 variant="standard"
-                onChange={(e) => onInputChange(e)}
+                onChange={(e) => onValueChange(e)}
                 label="Enter Your Password"
-                // name="password"
+                name="password"
               />
               <Text>Agree Purchase Zone's Terms And Conditions?</Text>
-              <LoginButton>Login</LoginButton>
+              <LoginButton onClick={() => LoginHandle()}>Login</LoginButton>
               <Typography style={{ textAlign: "center" }}>OR</Typography>
               <OtpButton>Request OTP</OtpButton>
               <CreateAccount onClick={(e) => toggleLogin(e)}>

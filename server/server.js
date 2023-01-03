@@ -7,15 +7,13 @@ import defaultData from "./defaultData.js";
 import router from "./routes/route.js";
 
 const app = express();
+dotenv.config();
 app.use(cors());
 app.use(bodyParser.json({ extended: true }));
-
-dotenv.config();
-dbConnection();
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/", router);
-
-
 const PORT = process.env.PORT;
+dbConnection();
 
 app.listen(PORT, () => {
   console.log(`Server is lestening at http://localhost:${PORT}`);

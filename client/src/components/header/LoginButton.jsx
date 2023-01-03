@@ -3,13 +3,15 @@ import { Box, Button, Typography } from "@mui/material";
 import styled from "@emotion/styled";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LoginDialog from "../login/Login";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { DataContext } from "../../context/DataProvider";
+import LogoutProfile from "./LogoutProfile";
+
 const ButtonCss = styled(Button)`
   color: white;
   height: 30px;
   font-size: 15px;
   text-transform: none;
-
 `;
 
 const BoxWraper = styled(Box)`
@@ -27,14 +29,21 @@ const CartBox = styled(Box)`
 
 const LoginButton = () => {
   const [open, setOpen] = useState(false);
-
+  const { accountName, setAccountName } = useContext(DataContext);
   const openDialog = () => {
     setOpen(true);
   };
 
   return (
     <BoxWraper>
-      <ButtonCss onClick={() => openDialog()}>Login</ButtonCss>
+      {accountName ? (
+        <LogoutProfile
+          accountName={accountName}
+          setAccountName={setAccountName}
+        />
+      ) : (
+        <ButtonCss onClick={() => openDialog()}>Login</ButtonCss>
+      )}
 
       <CartBox>
         <ShoppingCartIcon />
