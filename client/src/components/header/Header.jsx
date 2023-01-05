@@ -24,7 +24,7 @@ const Header = () => {
               style={{ width: 200, height: 50, marginLeft: 30 }}
             />
           </Link>
-          <Search />
+          <Search />  
           <CustomWraper>
             <LoginButton />
           </CustomWraper>

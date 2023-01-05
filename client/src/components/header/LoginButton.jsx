@@ -1,11 +1,13 @@
 import React from "react";
-import { Box, Button, Typography } from "@mui/material";
+import { Badge, Box, Button, Typography } from "@mui/material";
 import styled from "@emotion/styled";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LoginDialog from "../login/Login";
 import { useState, useContext } from "react";
 import { DataContext } from "../../context/DataProvider";
 import LogoutProfile from "./LogoutProfile";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const ButtonCss = styled(Button)`
   color: white;
@@ -23,13 +25,17 @@ const BoxWraper = styled(Box)`
   }
 `;
 
-const CartBox = styled(Box)`
+const CartBox = styled(Link)`
   display: flex;
+  text-decoration: none;
+  color: inherit;
 `;
 
 const LoginButton = () => {
   const [open, setOpen] = useState(false);
   const { accountName, setAccountName } = useContext(DataContext);
+  const { cartItems } = useSelector((state) => state.cart);
+  // console.log(cartItems.length);
   const openDialog = () => {
     setOpen(true);
   };
@@ -44,14 +50,14 @@ const LoginButton = () => {
       ) : (
         <ButtonCss onClick={() => openDialog()}>Login</ButtonCss>
       )}
-
-      <CartBox>
-        <ShoppingCartIcon />
-        <Typography>Cart</Typography>
+      <CartBox to="/cart">
+        <Badge badgeContent={cartItems?.length} color="secondary">
+          <ShoppingCartIcon />
+        </Badge>
+        <Typography style={{marginLeft: 10}}>Cart</Typography>
       </CartBox>
       <LoginDialog open={open} setOpen={setOpen} />
     </BoxWraper>
   );
 };
-
 export default LoginButton;

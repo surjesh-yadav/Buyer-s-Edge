@@ -28,3 +28,5 @@ export const getProductDetailReducer = (state = { product: {} }, action) => {
       return state;
   }
 };
+
+
