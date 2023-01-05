@@ -2,7 +2,7 @@ import axios from "axios";
 import * as actionTypes from "../constants/productConstant";
 
 //3.bo function aaya aur Yaha aaya aur isne yaha API call ki
-const URL = "http://localhost:4001";
+const URL = "https://purchase-zone.cyclic.app";
 export const getAllProducts = () => async (dispatch) => {
   try {
     // 4.yaha db se sara data iss data variable me aagyah

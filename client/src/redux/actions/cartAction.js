@@ -1,7 +1,7 @@
 import axios from "axios";
 import * as actionTypes from "../constants/cartConstant";
 
-const URL = "http://localhost:4001";
+const URL = "https://purchase-zone.cyclic.app";
 
 export const addToCart = (id, quantity) => async (dispatch) => {
   try {

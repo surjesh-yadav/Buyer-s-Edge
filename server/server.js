@@ -12,8 +12,8 @@ app.use(cors());
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/", router);
-const PORT = process.env.PORT;
 dbConnection();
+const PORT = process.env.PORT;
 
 app.listen(PORT, () => {
   console.log(`Server is lestening at http://localhost:${PORT}`);
