@@ -9,3 +9,4 @@ router.get("/products", getAllProducts);
 router.get("/product/:id", getProductDetailById);
 
 export default router;
+     

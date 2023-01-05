@@ -20,7 +20,7 @@ const Image = styled("img")(({ theme }) => ({
 
 const BannerMiddle = () => {
   const url =
-    "https://rukminim1.flixcart.com/flap/3006/433/image/4789bc3aefd54494.jpg?q=50";
+    "https://cdn.pixabay.com/photo/2016/05/27/08/51/mobile-phone-1419275__340.jpg";
   return (
     <>
       <Wraper lg={12} sm={12} md={12} container>

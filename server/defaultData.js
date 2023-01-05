@@ -12,4 +12,4 @@ const defaultData = async () => {
 }; 
  
 export default defaultData;
-  
+                             

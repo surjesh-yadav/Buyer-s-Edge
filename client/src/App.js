@@ -5,6 +5,7 @@ import DataProvider from "./context/DataProvider";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProductDetail from "./components/details/ProductDetail";
 import Cart from "./components/cart/Cart";
+import OrderConfirmed from "./components/cart/Confirmed";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
         </Box>
       </BrowserRouter>
     </DataProvider>
-  );
+  );  
 }
 
 export default App;

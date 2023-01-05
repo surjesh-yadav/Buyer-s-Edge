@@ -28,36 +28,10 @@ const Home = () => {
         <Banner />
         <ProductComponent
           products={products}
-          title="Deal of the Day"
+          title="Products"
           timer={true}
         />
         <BannerMiddle />
-
-        <ProductComponent
-          products={products}
-          title="Festival offers for you"
-          timer={false}
-        />
-        <ProductComponent
-          products={products}
-          title="Recommended Items"
-          timer={false}
-        />
-        <ProductComponent
-          products={products}
-          title="Top Selection"
-          timer={false}
-        />
-        <ProductComponent
-          products={products}
-          title="Tranding Offers"
-          timer={false}
-        />
-        <ProductComponent
-          products={products}
-          title="Winter 2023"
-          timer={false}
-        />
       </Box>
     </>
   );

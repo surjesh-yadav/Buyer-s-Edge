@@ -1,7 +1,7 @@
 import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { Box, Button, styled, Divider, Typography } from "@mui/material";
+import { Box, Button, styled, Divider, Typography, Grid } from "@mui/material";
 import Countdown from "react-countdown";
 import { Link } from "react-router-dom";
 
@@ -93,32 +93,22 @@ const ProductComponent = ({ products, title, timer }) => {
         <ViewAllButton variant="contained"> View All</ViewAllButton>
       </DealOfTheDayAndTimer>
       <Divider />
-      <Carousel
-        responsive={responsive}
-        infinite={true}
-        swipeable={false}
-        draggable={false}
-        autoPlay={true}
-        autoPlaySpeed={2000}
-        keyBoardControl={true}
-        centerMode={true}
-        dotListClass="custom-dot-list-style"
-        itemClass="carousel-item-padding-40-px"
-        containerClass="carousel-container"
-      >
-        {products.map((product) => (
-          <Link to={`product/${product.id}`}>
-            <Box textAlign="center" style={{ padding: "25px 15px" }}>
-              <Image src={product.url} alt="product" />
-              <Text style={{ fontWeight: 600, color: "#212121" }}>
-                {product.title.shortTitle}
-              </Text>
-              <Text style={{ color: "green" }}>{product.discount}</Text>
-              <Text style={{ color: "#7f7f7f" }}>{product.tagline}</Text>
-            </Box>
-          </Link>
-        ))}
-      </Carousel>
+      <Grid container>
+        <Grid container>
+          {products.map((product) => (
+            <Link to={`product/${product.id}`}>
+              <Box textAlign="center" style={{ padding: "25px 15px" }}>
+                <Image src={product.url} alt="product" />
+                <Text style={{ fontWeight: 600, color: "#212121" }}>
+                  {product.title.shortTitle}
+                </Text>
+                <Text style={{ color: "green" }}>{product.discount}</Text>
+                <Text style={{ color: "#7f7f7f" }}>{product.tagline}</Text>
+              </Box>
+            </Link>
+          ))}
+        </Grid>
+      </Grid>
     </Products>
   );
 };

@@ -1,6 +1,8 @@
 import { Box, styled, Typography, Button } from "@mui/material";
 import React from "react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import OrderConfirmed from "./Confirmed";
 const RightHeader = styled(Box)`
   padding: 20px 25px;
   text-align: center;
@@ -22,15 +24,21 @@ const RightDownBox = styled(Box)`
 
 const RightBox = styled(Box)`
   box-shadow: 0 -2px 10px 0 rgb(0 0 0/20%);
-  height: 90%; 
+  height: 90%;
 `;
 
 const TotalCartPrice = ({ cartItems }) => {
   const [price, setPrice] = useState(0);
   const [discount, setDiscount] = useState(0);
+  const navigate = useNavigate();
   useEffect(() => {
     totalAmount();
   }, [cartItems]);
+
+  const confirmed = () => {
+    alert(`Congratulation... Your order is placed`);
+    navigate("/");
+  };
 
   const totalAmount = () => {
     let price = 0,
@@ -54,7 +62,7 @@ const TotalCartPrice = ({ cartItems }) => {
           <Rupees component="span">₹{price}</Rupees>
         </Typography>
         <Typography>
-          Discount on  {cartItems?.length} item
+          Discount on {cartItems?.length} item
           <Rupees component="span">-₹{discount}</Rupees>
         </Typography>
         <Typography>
@@ -63,13 +71,14 @@ const TotalCartPrice = ({ cartItems }) => {
         </Typography>
         <Typography variant="h5">
           Total Ammount of {cartItems?.length} item
-          <Rupees component="span">₹{price-discount+20}</Rupees>
+          <Rupees component="span">₹{price - discount + 20}</Rupees>
         </Typography>
         <Typography style={{ color: "green", fontWeight: "500", fontSize: 12 }}>
-          Congratulations.......You will save ₹{discount-20} on this order
+          Congratulations.......You will save ₹{discount - 20} on this order
         </Typography>
       </RightDownBox>
       <Button
+        onClick={() => confirmed()}
         style={{
           width: "100%",
           background: "lightgreen",
